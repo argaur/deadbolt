@@ -1,0 +1,10 @@
+# Copy to .stale-facts at your repo root, then run scripts/stale-doc-check.sh.
+# One rule per line: <extended regex> ::: <what is true now>
+# Name facts that were true and stopped being true. This is not a style gate.
+
+# Skip history. Old records must keep saying what was true when they were written.
+exclude changelog
+exclude docs/archive
+
+Phases 0-6 ::: the process has eight phases now, 0 to 7
+deploy with Heroku ::: the app moved to Vercel, see docs/deploy.md

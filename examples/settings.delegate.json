@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "ask": [
+      "Bash(*codex-delegate.sh*)",
+      "PowerShell(*codex-delegate.sh*)",
+      "Bash(codex *)",
+      "PowerShell(codex *)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          { "type": "command", "command": "bash ~/.claude/honest-audits/hooks/model-roster-check.sh", "timeout": 20 }
+        ]
+      }
+    ]
+  }
+}

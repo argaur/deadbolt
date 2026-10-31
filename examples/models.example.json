@@ -1,0 +1,14 @@
+{
+  "providers": {
+    "google": {
+      "default": "REPLACE-with-a-model-from-agy-models",
+      "longread_default": "REPLACE-with-a-cheaper-model-for-long-files",
+      "models": [],
+      "excluded": []
+    },
+    "codex": {
+      "default": "REPLACE-with-a-model-your-plan-includes",
+      "models": []
+    }
+  }
+}
