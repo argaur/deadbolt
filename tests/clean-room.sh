@@ -32,7 +32,7 @@ bad() { FAIL=$((FAIL+1)); FAILED+=("$1"); }
 t()   { local label="$1"; shift; if "$@" >/dev/null 2>&1; then ok; else bad "$label"; fi; }
 tn()  { local label="$1"; shift; if "$@" >/dev/null 2>&1; then bad "$label"; else ok; fi; }
 
-C="$HOME/.claude"; B="$C/honest-audits"; S="$C/settings.json"
+C="$HOME/.claude"; B="$C/deadbolt"; S="$C/settings.json"
 CANARY="$B/hooks/hook-canary.sh"
 canary_out() { bash "$CANARY" "$S" 2>/dev/null; }
 restore() { cp "$ROOM/good/$1" "$B/$1"; }
@@ -228,7 +228,7 @@ t "merge: ask rule kept"       jq -e '.permissions.ask | index("Bash(rm:*)")' "$
 t "merge: your hook kept"      jq -e '[.hooks.PreToolUse[].hooks[].command] | index("echo mine.sh")' "$S"
 t "merge: guard added"         jq -e '[.hooks.PreToolUse[].hooks[].command] | map(contains("pre-tool-use-guard")) | any' "$S"
 t "merge: codex ask rule added" jq -e '.permissions.ask | index("Bash(*codex-delegate.sh*)")' "$S"
-t "install: settings backup written" compgen -G "$S.bak-honest-audits-*"
+t "install: settings backup written" compgen -G "$S.bak-deadbolt-*"
 t "install: your delegate.md was not overwritten" cmp "$ROOM/mine.md" "$C/commands/delegate.md"
 t "install: models.json placed" test -f "$B/models.json"
 
@@ -335,7 +335,7 @@ t "uninstall: settings still valid"         jq empty "$S"
 t "uninstall: model kept"                   test "$(jq -r .model "$S" | tr -d '\r')" = "my-model"
 t "uninstall: your ask rule kept"           jq -e '.permissions.ask | index("Bash(rm:*)")' "$S"
 t "uninstall: your hook kept"               jq -e '[.hooks.PreToolUse[].hooks[].command] | index("echo mine.sh")' "$S"
-if jq -e '[.. | strings | select(contains("honest-audits/"))] | length == 0' "$S" >/dev/null; then ok; else bad "uninstall: our hooks remain"; fi
+if jq -e '[.. | strings | select(contains("deadbolt/"))] | length == 0' "$S" >/dev/null; then ok; else bad "uninstall: our hooks remain"; fi
 if jq -e '.permissions.ask | index("Bash(codex *)") | not' "$S" >/dev/null; then ok; else bad "uninstall: codex ask rule remains"; fi
 
 # ------------------------------------------------------- no fake secret in any file

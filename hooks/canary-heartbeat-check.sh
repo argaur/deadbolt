@@ -4,7 +4,7 @@
 # cannot report itself, so a different hook reads the marker it leaves behind.
 # Always exits 0.
 
-MARKER="$HOME/.claude/honest-audits/.canary-last-run"
+MARKER="$HOME/.claude/deadbolt/.canary-last-run"
 LIMIT_DAYS=3
 
 say() {

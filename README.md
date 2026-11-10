@@ -1,4 +1,4 @@
-# Honest audits
+# Deadbolt
 
 **Enforcement is scripts, not prose.**
 
@@ -36,7 +36,7 @@ The guards need bash features that bash 3.2 lacks, so the installer refuses to r
 
 ```
 git clone <this repo>
-cd honest-audits
+cd deadbolt
 bash install.sh --dry-run    # see what would change
 bash install.sh              # core
 ```
@@ -45,7 +45,7 @@ Add `--with-delegate` for the optional lane in [docs/delegate.md](docs/delegate.
 
 The installer:
 
-- puts everything in `~/.claude/honest-audits/`, apart from the model-router skill and, with `--with-delegate`, the `/delegate` command and its agent;
+- puts everything in `~/.claude/deadbolt/`, apart from the model-router skill and, with `--with-delegate`, the `/delegate` command and its agent;
 - merges hooks into your `settings.json`, keeps everything else in it, and writes a timestamped backup first;
 - never overwrites a file of yours;
 - writes a manifest for the drift check;
@@ -64,10 +64,10 @@ In a new session, ask Claude to run `git push --force`. The guard denies it and 
 Then see why a canary matters. Run this in your own terminal, not through Claude:
 
 ```
-cp ~/.claude/honest-audits/hooks/pre-tool-use-guard.sh /tmp/guard.bak
-printf '#!/usr/bin/env bash\nexit 0\n' > ~/.claude/honest-audits/hooks/pre-tool-use-guard.sh
-bash ~/.claude/honest-audits/hooks/hook-canary.sh
-cp /tmp/guard.bak ~/.claude/honest-audits/hooks/pre-tool-use-guard.sh
+cp ~/.claude/deadbolt/hooks/pre-tool-use-guard.sh /tmp/guard.bak
+printf '#!/usr/bin/env bash\nexit 0\n' > ~/.claude/deadbolt/hooks/pre-tool-use-guard.sh
+bash ~/.claude/deadbolt/hooks/hook-canary.sh
+cp /tmp/guard.bak ~/.claude/deadbolt/hooks/pre-tool-use-guard.sh
 ```
 
 The canary reports `GATE IS FAILING OPEN`.

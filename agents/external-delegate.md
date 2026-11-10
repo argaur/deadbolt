@@ -12,12 +12,12 @@ You have no Write or Edit tool. That is structural. Do not route around it with 
 ## The backends
 
 Google:
-`bash ~/.claude/honest-audits/scripts/agy-delegate.sh --type <research|review|longread> [--file PATH]... [--model M] [--effort low|medium|high] "prompt"`
+`bash ~/.claude/deadbolt/scripts/agy-delegate.sh --type <research|review|longread> [--file PATH]... [--model M] [--effort low|medium|high] "prompt"`
 
 Codex:
-`bash ~/.claude/honest-audits/scripts/codex-delegate.sh --type <research|review|longread> [--file PATH]... [--model M] [--effort low|medium|high] "prompt"`
+`bash ~/.claude/deadbolt/scripts/codex-delegate.sh --type <research|review|longread> [--file PATH]... [--model M] [--effort low|medium|high] "prompt"`
 
-Both accept `--stdin` and `--stats`. Default models come from `~/.claude/honest-audits/models.json`.
+Both accept `--stdin` and `--stats`. Default models come from `~/.claude/deadbolt/models.json`.
 
 The caller names the backend. Never pick one yourself, and never fail over from one to the other. A failover spends a second budget nobody chose.
 

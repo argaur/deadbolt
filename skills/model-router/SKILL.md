@@ -33,5 +33,5 @@ Effort: `low` for mechanical steps, `medium` for normal implementation, `high` f
 1. Read the finished plan, every step, in order. Do not tag a partial draft.
 2. Classify each step, not each task. "Write the test" and "decide the schema" in one task can differ.
 3. Insert the tags. Do not change content, order or scope.
-4. Run `bash ~/.claude/honest-audits/scripts/plan-gate.sh <plan.md>`.
+4. Run `bash ~/.claude/deadbolt/scripts/plan-gate.sh <plan.md>`.
 5. Report the count per model, plus any fallback tags and their reasons.

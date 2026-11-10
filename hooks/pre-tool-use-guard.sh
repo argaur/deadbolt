@@ -13,7 +13,7 @@ INPUT=$(cat)
 
 # deny: pure printf and sed, so no interpreter can go missing and fail open.
 deny() {
-  esc=$(printf '%s' "$1 (honest-audits guard. Run it yourself in a real terminal if you truly need it)" \
+  esc=$(printf '%s' "$1 (deadbolt guard. Run it yourself in a real terminal if you truly need it)" \
         | sed 's/\\/\\\\/g; s/"/\\"/g' | tr -d '\000-\037')
   printf '{"hookSpecificOutput":{"hookEventName":"PreToolUse","permissionDecision":"deny","permissionDecisionReason":"%s"}}\n' "$esc"
   exit 0

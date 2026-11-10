@@ -13,7 +13,7 @@
 source "$(dirname "${BASH_SOURCE[0]}")/ensure-jq.sh" 2>/dev/null || true
 trap 'exit 0' EXIT
 
-BASE="$HOME/.claude/honest-audits"
+BASE="$HOME/.claude/deadbolt"
 ROSTER="$BASE/models.json"
 STAMP="$BASE/.model-roster-last-check"
 STALE_DAYS=30

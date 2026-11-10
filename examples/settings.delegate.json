@@ -11,7 +11,7 @@
     "SessionStart": [
       {
         "hooks": [
-          { "type": "command", "command": "bash ~/.claude/honest-audits/hooks/model-roster-check.sh", "timeout": 20 }
+          { "type": "command", "command": "bash ~/.claude/deadbolt/hooks/model-roster-check.sh", "timeout": 20 }
         ]
       }
     ]

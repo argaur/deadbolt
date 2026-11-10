@@ -10,7 +10,7 @@
 bash install.sh --with-delegate
 ```
 
-Then edit `~/.claude/honest-audits/models.json` and set your default models. Nothing is filled in for you, because model names change and depend on your plan.
+Then edit `~/.claude/deadbolt/models.json` and set your default models. Nothing is filled in for you, because model names change and depend on your plan.
 
 ## Lanes
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# install.sh: install the honest-audits guards into ~/.claude.
+# install.sh: install the deadbolt guards into ~/.claude.
 #
 #   bash install.sh                  core: guards, canary, drift checks, plan gates
 #   bash install.sh --with-delegate  also the optional non-Anthropic delegation lane
@@ -7,7 +7,7 @@
 #   bash install.sh --uninstall      remove everything this script added
 #
 # What it touches:
-#   ~/.claude/honest-audits/   the hooks and scripts (ours alone)
+#   ~/.claude/deadbolt/   the hooks and scripts (ours alone)
 #   ~/.claude/settings.json    hook entries are merged in. Your settings stay. A
 #                              timestamped backup is written first
 #   ~/.claude/skills/model-router/, and with --with-delegate, commands/delegate.md and
@@ -19,7 +19,7 @@ set -euo pipefail
 
 SRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CLAUDE_DIR="$HOME/.claude"
-BASE="$CLAUDE_DIR/honest-audits"
+BASE="$CLAUDE_DIR/deadbolt"
 SETTINGS="$CLAUDE_DIR/settings.json"
 MANIFEST="$BASE/MANIFEST.sha256"
 
@@ -61,7 +61,7 @@ hash_file() {
 
 backup_settings() {
   [ -f "$SETTINGS" ] || return 0
-  local b; b="$SETTINGS.bak-honest-audits-$(date +%Y%m%d-%H%M%S)"
+  local b; b="$SETTINGS.bak-deadbolt-$(date +%Y%m%d-%H%M%S)"
   run cp "$SETTINGS" "$b"
   say "settings backup: $b"
 }
@@ -82,7 +82,7 @@ if [ "$MODE" = "uninstall" ]; then
     if [ "$DRY" = "0" ]; then
       TMP="$(mktemp)"
       jq --slurpfile d "$SRC/examples/settings.delegate.json" '
-        def ours: (.command // "") | contains("honest-audits/");
+        def ours: (.command // "") | contains("deadbolt/");
         (if .hooks then
            .hooks |= (with_entries(
              .value |= (map(.hooks |= map(select(ours | not))) | map(select((.hooks | length) > 0))))
@@ -101,7 +101,7 @@ if [ "$MODE" = "uninstall" ]; then
     while read -r _ rel; do
       rel="${rel#\*}"
       case "$rel" in
-        honest-audits/*) ;;
+        deadbolt/*) ;;
         *) run rm -f "$CLAUDE_DIR/$rel" ;;
       esac
     done < "$MANIFEST"
@@ -194,7 +194,7 @@ fi
 NEW_MANIFEST="$(mktemp)"
 (
   cd "$CLAUDE_DIR"
-  for rel in honest-audits/hooks/*.sh honest-audits/scripts/*.sh "${EXTRA[@]}"; do
+  for rel in deadbolt/hooks/*.sh deadbolt/scripts/*.sh "${EXTRA[@]}"; do
     hash_file "$rel"
   done
 ) | tr -d '\r' > "$NEW_MANIFEST"

@@ -10,7 +10,7 @@
 set -uo pipefail
 
 ROOT="$HOME/.claude"
-MANIFEST="$ROOT/honest-audits/MANIFEST.sha256"
+MANIFEST="$ROOT/deadbolt/MANIFEST.sha256"
 QUIET=0; [ "${1:-}" = "--quiet" ] && QUIET=1
 
 say() { [ "$QUIET" = "1" ] || echo "$*"; }

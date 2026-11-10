@@ -7,7 +7,7 @@ Most bad builds start as a plan nobody checked. These gates make the checks mech
 Pass or fail on a plan file, before anyone builds from it.
 
 ```
-bash ~/.claude/honest-audits/scripts/plan-gate.sh plans/my-plan.md
+bash ~/.claude/deadbolt/scripts/plan-gate.sh plans/my-plan.md
 ```
 
 It fails a plan when:

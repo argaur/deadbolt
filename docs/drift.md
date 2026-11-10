@@ -22,7 +22,7 @@ Silent means green, and a canary that never launched is silent too. It cannot re
 Compares every installed file with the sha256 manifest written at install time. Run it after anything that touches `~/.claude`. If you edit an installed guard on purpose, re-run `install.sh` to refresh the manifest, or the canary will flag it.
 
 ```
-bash ~/.claude/honest-audits/scripts/verify-install.sh
+bash ~/.claude/deadbolt/scripts/verify-install.sh
 ```
 
 The manifest sits beside the files it describes, so it catches accidents and stale copies. It does not stop someone who rewrites both.
@@ -32,7 +32,7 @@ The manifest sits beside the files it describes, so it catches accidents and sta
 A sweep of old facts is a one-time act, and nobody re-greps a doc they believe is correct. This turns the sweep into a check. Copy `examples/stale-facts.example` to `.stale-facts` at your repo root and list facts that stopped being true.
 
 ```
-bash ~/.claude/honest-audits/scripts/stale-doc-check.sh /path/to/repo
+bash ~/.claude/deadbolt/scripts/stale-doc-check.sh /path/to/repo
 ```
 
 It checks Markdown files only. It is a tool you run or wire into CI. Nothing runs it for you.

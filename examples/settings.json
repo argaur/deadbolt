@@ -4,9 +4,9 @@
     "SessionStart": [
       {
         "hooks": [
-          { "type": "command", "command": "bash ~/.claude/honest-audits/hooks/hook-canary.sh", "timeout": 30 },
-          { "type": "command", "command": "bash ~/.claude/honest-audits/hooks/canary-heartbeat-check.sh", "timeout": 10 },
-          { "type": "command", "command": "bash ~/.claude/honest-audits/hooks/plan-state-check.sh", "timeout": 10 }
+          { "type": "command", "command": "bash ~/.claude/deadbolt/hooks/hook-canary.sh", "timeout": 30 },
+          { "type": "command", "command": "bash ~/.claude/deadbolt/hooks/canary-heartbeat-check.sh", "timeout": 10 },
+          { "type": "command", "command": "bash ~/.claude/deadbolt/hooks/plan-state-check.sh", "timeout": 10 }
         ]
       }
     ],
@@ -14,14 +14,14 @@
       {
         "matcher": "Bash|PowerShell",
         "hooks": [
-          { "type": "command", "command": "bash ~/.claude/honest-audits/hooks/pre-tool-use-guard.sh", "timeout": 10 },
-          { "type": "command", "command": "bash ~/.claude/honest-audits/hooks/deploy-preflight-guard.sh", "timeout": 10 }
+          { "type": "command", "command": "bash ~/.claude/deadbolt/hooks/pre-tool-use-guard.sh", "timeout": 10 },
+          { "type": "command", "command": "bash ~/.claude/deadbolt/hooks/deploy-preflight-guard.sh", "timeout": 10 }
         ]
       },
       {
         "matcher": "Write|Edit|MultiEdit|Read|Grep|NotebookEdit",
         "hooks": [
-          { "type": "command", "command": "bash ~/.claude/honest-audits/hooks/file-io-guard.sh", "timeout": 10 }
+          { "type": "command", "command": "bash ~/.claude/deadbolt/hooks/file-io-guard.sh", "timeout": 10 }
         ]
       }
     ],
@@ -29,7 +29,7 @@
       {
         "matcher": "Write|ExitPlanMode",
         "hooks": [
-          { "type": "command", "command": "bash ~/.claude/honest-audits/hooks/plan-finalized-nudge.sh", "timeout": 10 }
+          { "type": "command", "command": "bash ~/.claude/deadbolt/hooks/plan-finalized-nudge.sh", "timeout": 10 }
         ]
       }
     ]

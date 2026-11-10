@@ -17,7 +17,7 @@
 source "$(dirname "${BASH_SOURCE[0]}")/ensure-jq.sh" 2>/dev/null || true
 
 SETTINGS="${1:-$HOME/.claude/settings.json}"
-BASE="$HOME/.claude/honest-audits"
+BASE="$HOME/.claude/deadbolt"
 HEARTBEAT="$BASE/.canary-last-run"
 VERIFY="$(dirname "${BASH_SOURCE[0]}")/../scripts/verify-install.sh"
 
@@ -115,7 +115,7 @@ while IFS=$'\001' read -r EVENT CMD; do
   if [ ! -f "$P" ]; then
     # Your own hooks may resolve in ways this cannot see. Only ours are a FAIL.
     case "$P" in
-      */honest-audits/*) add "FAIL: [$EVENT] hook script does not exist: $P" ;;
+      */deadbolt/*) add "FAIL: [$EVENT] hook script does not exist: $P" ;;
       *) add "WARNING: [$EVENT] could not find this hook's script: $P" ;;
     esac
     continue
